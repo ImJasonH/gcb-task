@@ -1,5 +1,12 @@
 # Google Cloud Build for Tekton
 
+This repo provides an experimental [Tekton Custom
+Task](https://github.com/tektoncd/community/pull/128) that executes a Google
+Cloud Build.
+
+The intention is to demonstrate the kinds of things a Custom Task can do, and
+to demonstrate how to write a Custom Task.
+
 ## Install
 
 Install and configure `ko`.
@@ -8,7 +15,8 @@ Install and configure `ko`.
 ko apply -f controller.yaml
 ```
 
-This will build and install the controller on your cluster.
+This will build and install the controller on your cluster, in the namespace
+`cloudbuild-task`.
 
 ## Service Account Setup
 
@@ -35,3 +43,15 @@ NAME            SUCCEEDED   REASON         STARTTIME   COMPLETIONTIME
 gcb-run-j2w5p   Unknown     BuildWorking   15s         
 gcb-run-j2w5p   True        BuildSucceeded   31s         1s
 ```
+
+# Outstanding Work
+
+Thanks!😊 There's plenty more to do though.
+
+Namely:
+
+* Don't hard-code a trivial GCB build, either let users define their build
+  using a CRD, and/or read a build config from a repo or parameter value.
+* Accept a source archive in GCS as an input parameter, to integrate with
+  other Tasks in a Pipeline.
+* Emit the build ID as an output result.

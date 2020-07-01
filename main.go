@@ -159,7 +159,7 @@ func (c *Reconciler) ReconcileKind(ctx context.Context, r *v1alpha1.Run) reconci
 		logger.Infof("Run has started (%s), checking build status...", cond.Reason)
 		// The Run has started, so check on the status of the build
 		// and update the Run's status with the latest details.
-		id, err := r.Status.Get("buildId")
+		id, err := r.Status.GetAdditionalField("buildId")
 		if err != nil {
 			return err
 		}
@@ -182,11 +182,11 @@ func (c *Reconciler) ReconcileKind(ctx context.Context, r *v1alpha1.Run) reconci
 	r.Status.CompletionTime = parseTime(b.FinishTime)
 
 	// Update the build metadata in the Run status.
-	if err := r.Status.Set("buildId", b.Id); err != nil {
+	if err := r.Status.SetAdditionalField("buildId", b.Id); err != nil {
 		logger.Errorf("Error setting build ID metadata: %v", err)
 		return err
 	}
-	if err := r.Status.Set("build", b); err != nil {
+	if err := r.Status.SetAdditionalField("build", b); err != nil {
 		logger.Errorf("Error setting build metadata: %v", err)
 		return err
 	}
