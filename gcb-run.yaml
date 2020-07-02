@@ -6,4 +6,3 @@ spec:
   ref:
     apiVersion: cloudbuild.googleapis.com/v1alpha1
     kind: Build
-    name: anything
