@@ -29,7 +29,7 @@ type CloudbuildV1alpha1Interface interface {
 	BuildsGetter
 }
 
-// CloudbuildV1alpha1Client is used to interact with features provided by the cloudbuild group.
+// CloudbuildV1alpha1Client is used to interact with features provided by the cloudbuild.googleapis.com group.
 type CloudbuildV1alpha1Client struct {
 	restClient rest.Interface
 }

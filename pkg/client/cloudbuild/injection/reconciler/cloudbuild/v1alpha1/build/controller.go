@@ -42,7 +42,7 @@ import (
 
 const (
 	defaultControllerAgentName = "build-controller"
-	defaultFinalizerName       = "builds.cloudbuild"
+	defaultFinalizerName       = "builds.cloudbuild.googleapis.com"
 )
 
 // NewImpl returns a controller.Impl that handles queuing and feeding work from
