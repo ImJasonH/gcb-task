@@ -12,7 +12,7 @@ to demonstrate how to write a Custom Task.
 Install and configure `ko`.
 
 ```
-ko apply -f controller.yaml
+ko apply -f config/
 ```
 
 This will build and install the controller on your cluster, in the namespace
