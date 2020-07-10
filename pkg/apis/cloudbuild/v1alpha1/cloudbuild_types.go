@@ -5,7 +5,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// +genclient
+// +genclient:noStatus
 // +genreconciler
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
@@ -21,8 +21,15 @@ type Build struct {
 	Spec BuildSpec `json:"spec"`
 }
 
+type gcbBuild cloudbuild.Build
+
+func (in *gcbBuild) DeepCopyInto(out *gcbBuild) {
+	*out = *in
+	return
+}
+
 type BuildSpec struct {
-	cloudbuild.Build `json:",inline"`
+	gcbBuild `json:",inline"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
